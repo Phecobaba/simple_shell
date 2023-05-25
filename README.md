@@ -12,7 +12,7 @@ bash
 ./hsh
 The shell will display a prompt, and you can enter commands just like you would in a normal shell.
 
-Supported commands
+These are the Supported commands
 This simple shell supports basic commands such as cd, ls, pwd, echo, mkdir, rmdir, and exit.
 
 Acknowledgments
