@@ -98,7 +98,7 @@ int pipe_input(char **argv)
  * check_ifs - handles builtins
  * @w: input
  * @tok: input
- Return: 0
+ * Return: 0
  */
 int check_ifs(char **tok, char *w)
 {
