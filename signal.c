@@ -26,7 +26,7 @@ void freee_s(char **f)
 	c = f;
 	for (; c != NULL; c++)
 	{
-	free(*c);
+		free(*c);
 		*c = NULL;
 	}
 	free(f);
@@ -36,7 +36,7 @@ void freee_s(char **f)
  *
  * Return: nothing
  */
-void env_h()
+void env_h(void)
 {
 	char **env = environ;
 

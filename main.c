@@ -37,7 +37,7 @@ int main(int argc __attribute__((unused)), char **argv)
 				token = strtok(NULL, " \n");
 			}
 			tok[a] = NULL;
-			if (!tok || !tok[0])
+			if (tok == NULL || tok[0] == NULL)
 				continue;
 			if (check_ifs(tok, w) == 0)
 				continue;
@@ -98,7 +98,7 @@ int pipe_input(char **argv)
  * check_ifs - handles builtins
  * @w: input
  * @tok: input
- * Return: 0
+ Return: 0
  */
 int check_ifs(char **tok, char *w)
 {
@@ -108,22 +108,10 @@ int check_ifs(char **tok, char *w)
 		exit_st(tok);
 	}
 	if (strn_cmp(tok[0], "env", 4) == 0)
-	free(f);
-}
-
-/**
- * env_h - print environment
- * @void: nothing
- * Return: nothing
- */
-void env_h(void)
-{
-	char **env = environ;
-
-	while (*env != NULL)
 	{
-		env_h(tok);
+		env_h();
 		return (0);
 	}
 	return (1);
 }
+
