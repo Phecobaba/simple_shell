@@ -90,7 +90,8 @@ size_t str_len(const void *c)
  */
 
 ssize_t get_line(char **line_p, size_t *n, FILE *stream)
-{ size_t i = 0, contain = *n;
+{
+	size_t i = 0, contain = *n;
 	ssize_t byt_read = 0;
 	int s;
 
@@ -108,7 +109,8 @@ ssize_t get_line(char **line_p, size_t *n, FILE *stream)
 	while ((s = fgetc(stream)) != EOF && s != '\n')
 	{
 		if (i >= contain - 1)
-		{ char *tmp;
+		{
+			char *tmp;
 
 			contain *= 2;
 			tmp = (char *)realloc(*line_p, contain);
@@ -119,12 +121,14 @@ ssize_t get_line(char **line_p, size_t *n, FILE *stream)
 				return (-1);
 			}
 			*line_p = tmp;
+			free(tmp);
 		}
 		(*line_p)[i++] = (char)s;
 		byt_read++;
 	}
 	if (byt_read == 0 && s == EOF)
-	{ free(*line_p);
+	{
+		free(*line_p);
 		*line_p = NULL;
 		return (-1);
 	}

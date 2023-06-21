@@ -14,26 +14,28 @@ int main(int argc __attribute__((unused)), char **argv)
 	char *tok[STORE], *token;
 	size_t num = 0;
 
-	pipe_input(argv);
+/*	pipe_input(argv);*/
 	signal(SIGINT, signal_handler);
-	while (isatty(STDIN_FILENO))
+	while (/*isatty(STDIN_FILENO)*/1)
 	{
-		write(STDOUT_FILENO, "$ ", 2);
+		write(STDOUT_FILENO, "ada~$ ", 6);
 		fflush(stdout);
 		n = get_line(&w, &num, stdin);
 		if (n == -1)
-		{
+		{       free(w);
 			write(STDOUT_FILENO, "\n", 1);
 			return (-1);
 		}
 		if (n == 0)
 			continue;
 		if (w[0] != '\n')
-		{ int a = 0;
+		{
+			int a = 0;
 
 			token = strtok(w, " \n");
 			while (token != NULL && a < STORE - 2)
-			{ tok[a++] = token;
+			{
+				tok[a++] = token;
 				token = strtok(NULL, " \n");
 			}
 			tok[a] = NULL;
@@ -57,7 +59,7 @@ int main(int argc __attribute__((unused)), char **argv)
  * using it to get the name of our file for error purpose
  * Return: 0 on success
  */
-
+/*
 int pipe_input(char **argv)
 {
 	int a = 0, b;
@@ -73,11 +75,11 @@ int pipe_input(char **argv)
 		}
 		st[b - 1] = '\0';
 
-		token = strtok(st, " \t\n");
+		token = str_tok(st, " \t\n");
 		while (token && a < STORE - 1)
 		{
 			tok[a++] = token;
-			token = strtok(NULL, " \t\n");
+			token = str_tok(NULL, " \t\n");
 		}
 		tok[a] = NULL;
 
@@ -92,7 +94,7 @@ int pipe_input(char **argv)
 		}
 	}
 	return (0);
-}
+}*/
 
 /**
  * check_ifs - handles builtins

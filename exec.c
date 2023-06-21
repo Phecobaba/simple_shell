@@ -13,15 +13,16 @@ char pathfinder(char *tok, char **token, char *argv[])
 	char *pt = _getenv("PATH"), *p = str_dup(pt), *d, *f_pth;
 
 	if (p == NULL)
-	{
 		return (-1);
-	}
+	
 	d = str_tok(p, ":");
 	if (d == NULL)
 	{
 		perror(argv[0]);
+		free(p);
 		return (-1);
 	}
+	
 	f_pth = malloc(str_len(d) + str_len(tok) + 2);
 	if (!f_pth)
 	{
@@ -29,6 +30,7 @@ char pathfinder(char *tok, char **token, char *argv[])
 		free(p);
 		return (-1);
 	}
+	
 	while (d != NULL)
 	{
 		str_cpy(f_pth, d);
@@ -46,9 +48,9 @@ char pathfinder(char *tok, char **token, char *argv[])
 		d = str_tok(NULL, ":");
 	}
 
+	perror(argv[0]);
 	free(p);
 	free(f_pth);
-	perror(argv[0]);
 	return (-1);
 }
 
